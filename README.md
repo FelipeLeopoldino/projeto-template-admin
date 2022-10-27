@@ -1,4 +1,4 @@
-<a href="https://porta-premiada-felipeleopoldino.netlify.app/">Porta Premiada</a>
+<!-- <a href="https://porta-premiada-felipeleopoldino.netlify.app/">Porta Premiada</a> -->
 
 ## 💻 Projeto Template Admin
 
@@ -9,7 +9,7 @@ Utilizando:
 ContextApi, NextJs, ReactJs, Tailwind, TypeScript e Firebase.
 
 Nesse projeto pude aprender muito sobre ContextApi, Firebase e Hooks do React.
-Colando em pratica os conceitos de TypeScript e Tailwind.
+Colocando em pratica os conceitos de TypeScript e Tailwind.
 
 O prejeto tem como opção login pelo Google e por Email e Senha, 
 mudança de tema para claro e escuro e responsivo.

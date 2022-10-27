@@ -1,8 +1,10 @@
 import route from 'next/router'
 import { createContext, useEffect, useState } from 'react'
-import firebase from '../../firebase/config'
+
 import Usuario from '../../model/Usuario'
 import Cookies from 'js-cookie'
+import app from '../../firebase/config'
+
 
 interface AuthContextProps {
   usuario?: Usuario
@@ -15,9 +17,7 @@ interface AuthContextProps {
 
 const AuthContext = createContext<AuthContextProps>({})
 
-async function usuarioNormalizado(
-  usuarioFirebase: firebase.User
-): Promise<Usuario> {
+async function usuarioNormalizado(usuarioFirebase: app.User): Promise<Usuario> {
   const token = await usuarioFirebase.getIdToken()
   return {
     uid: usuarioFirebase.uid,
@@ -61,9 +61,7 @@ export function AuthProvider(props) {
   async function login(email, senha) {
     try {
       setCarregando(true)
-      const resp = await firebase
-        .auth()
-        .signInWithEmailAndPassword(email, senha)
+      const resp = await app.auth().signInWithEmailAndPassword(email, senha)
 
       await configuraSessao(resp.user)
       route.push('/')
@@ -75,7 +73,7 @@ export function AuthProvider(props) {
   async function cadastrar(email, senha) {
     try {
       setCarregando(true)
-      const resp = await firebase
+      const resp = await app
         .auth()
         .createUserWithEmailAndPassword(email, senha)
 
@@ -87,9 +85,9 @@ export function AuthProvider(props) {
   }
 
   async function loginGoogle() {
-    const resp = await firebase
+    const resp = await app
       .auth()
-      .signInWithPopup(new firebase.auth.GoogleAuthProvider())
+      .signInWithPopup(new app.auth.GoogleAuthProvider())
 
     await configuraSessao(resp.user)
     route.push('/')
@@ -98,7 +96,7 @@ export function AuthProvider(props) {
   async function logout() {
     try {
       setCarregando(true)
-      await firebase.auth().signOut()
+      await app.auth().signOut()
       await configuraSessao(null)
     } finally {
       setCarregando(false)
@@ -106,7 +104,7 @@ export function AuthProvider(props) {
   }
 
   useEffect(() => {
-    const cancelar = firebase.auth().onIdTokenChanged(configuraSessao)
+    const cancelar = app.auth().onIdTokenChanged(configuraSessao)
     return () => cancelar()
   }, [])
 
