@@ -42,7 +42,7 @@ export default function Autenticacao() {
           />
         </span>
       </div>
-      <div className="m-10 w-full md:w-1/2 lg:w-1/3">
+      <div className="m-10 w-full md:w-1/2 lg:w-1/3 text-black">
         <h1
           className={`
         text-2xl font-bold mb-5
@@ -68,20 +68,25 @@ export default function Autenticacao() {
           false
         )}
 
-        <AuthInput
-          label="Email"
-          tipo="email"
-          valor={email}
-          valorMudou={setEmail}
-          obrigatorio
-        />
-        <AuthInput
-          label="Senha"
-          tipo="password"
-          valor={senha}
-          valorMudou={setSenha}
-          obrigatorio
-        />
+        <span className="text-black">
+          <AuthInput
+            label="Email"
+            tipo="email"
+            valor={email}
+            valorMudou={setEmail}
+            obrigatorio
+          />
+        </span>
+
+        <span className='text-black'>
+          <AuthInput
+            label="Senha"
+            tipo="password"
+            valor={senha}
+            valorMudou={setSenha}
+            obrigatorio
+          />
+        </span>
 
         <button
           onClick={submeter}
@@ -109,7 +114,7 @@ export default function Autenticacao() {
         </button>
 
         {modo === 'login' ? (
-          <p className="mt-8">
+          <p className="mt-8 text-black">
             Novo por aqui?
             <a
               onClick={() => setModo('cadastro')}
