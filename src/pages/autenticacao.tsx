@@ -32,7 +32,7 @@ export default function Autenticacao() {
   const urlImage = 'https://source.unsplash.com/random'
 
   return (
-    <div className="flex h-screen items-center justify-center">
+    <div className="flex h-screen items-center justify-center bg-white">
       <div className="hidden md:block md:w-1/2 lg:w-2/3">
         <span>
           <img
